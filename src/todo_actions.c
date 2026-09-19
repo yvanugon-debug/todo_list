@@ -5,7 +5,7 @@
 #include "../include/todo_actions.h"
 
 void print_tasks(Task **head){
-    if (*head == NULL){
+    if ((*head) == NULL){
         printf("Your have no tasks to do");
         return;
     }
@@ -19,7 +19,10 @@ void print_tasks(Task **head){
         total += currentNode->hours;
         currentNode = currentNode -> next;
     }
-    printf("TOTAL: %.2f",total);
+    printf("TOTAL: %.2f\n",total);
+    printf("press enter to exit\n");
+    char test;
+    scanf("%c",&test);
     
 }
 
@@ -35,7 +38,7 @@ int add_task(char *name, char *hours, char *urgency, Task **head){
     currentTask ->urgency = atoi(urgency);
     currentTask->next = NULL;
     //put the task in order of urgency into the linked list
-    if (*head == NULL || currentTask->urgency < (*head)->urgency){
+    if (*head == NULL || currentTask->urgency > (*head)->urgency){
         currentTask->next = *head;
         *head = currentTask;        
     }else{
@@ -65,18 +68,26 @@ int clear_list(Task **head){
 int prompt_add_task(Task **head){
     char taskName[256];
     char hours[10];
-    int urgency[4];
+    char urgency[4];
     printf("enter a name for your task: ");
     fgets(taskName, sizeof(taskName),stdin);
-    taskName[strcspn(taskName,'\n')] = '\0';
+    taskName[strcspn(taskName,"\n")] = '\0';
     printf("enter how many hours it will take: ");
     fgets(hours, sizeof(hours), stdin);
-    hours[strcspn(hours,'\n')] = '\0';
+    hours[strcspn(hours,"\n")] = '\0';
     printf("on a scale to 1 to 10 how urgent is it: ");
     fgets(urgency, sizeof(urgency), stdin);
-    urgency[strcspn(urgency,'\n')] = '\0';
+    urgency[strcspn(urgency,"\n")] = '\0';
     return add_task(taskName, hours, urgency, head);
     
+}
+
+int prompt_remove_task(char *userChoice, Task **head){
+    if (strcmp(userChoice + 6, "all") == 0){
+        return clear_list(head);
+    }
+    int num = atoi(userChoice + 6);
+    return remove_task(head, num);
 }
 
 int remove_task(Task **head, int taskNum){

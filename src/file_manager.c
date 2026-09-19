@@ -34,14 +34,15 @@ int save_file(char* fileName, Task **head){
     FILE *saveFile = fopen(fileName, "w");
     //check that the file successfully opened
     if (saveFile == NULL){
-        printf("file failed to open");
+        printf("file failed to open\n");
         return -1;
     }
     //print the tasks in the linked list into the text file
     Task *currentTask = *head;
     while(currentTask != NULL){
-        fprintf(saveFile,"%s,%f,%d\n",currentTask->name,currentTask->hours,currentTask->urgency);
+        fprintf(saveFile,"%s,%.2f,%d\n",currentTask->name,currentTask->hours,currentTask->urgency);
         currentTask = currentTask->next;
     }
+    fclose(saveFile);
     return 0;
 }
