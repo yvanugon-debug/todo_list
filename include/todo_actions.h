@@ -3,9 +3,9 @@
 #ifndef TODO_ACTIONS_H
 #define TODO_ACTIONS_H
 
-typedef struct{
-    char taskName[256];
-    float timeHours;
+typedef struct Task{
+    char name[256];
+    float hours;
     int urgency;
     struct Task *next;
 
