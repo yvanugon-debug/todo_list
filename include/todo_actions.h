@@ -12,7 +12,7 @@ typedef struct Task{
 
 }Task;
 
-int load_tasks();
+
 void print_tasks();
 int add_task();
 Task create_task();

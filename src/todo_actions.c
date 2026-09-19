@@ -3,7 +3,22 @@
 #include "../include/file_manager.h"
 #include "../include/todo_actions.h"
 
-void print_tasks(){
+void print_tasks(Task **head){
+    if (*head == NULL){
+        printf("Your have no tasks to do");
+        return;
+    }
+    float total = 0;
+    int iter = 0;
+    Task *currentNode = *head;
+    printf("YOUR CURRENT TASK LIST\n");
+    //iterates through linked list and prints the tasks in it
+    while (currentNode != NULL){
+        printf("%d. %s (%.2f hours)\n",iter++,currentNode->name, currentNode->hours);
+        total += currentNode->hours;
+        currentNode = currentNode -> next;
+    }
+    printf("TOTAL: %.2f",total)
     
 }
 
