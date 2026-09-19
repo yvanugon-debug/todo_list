@@ -15,8 +15,8 @@ int main(){
     while (exit == 0){
         
         printf("what would you like to do?\n");
-        printf("enter 'add <task name> <hours> <urgency>' to add a task\n");
-        printf("enter 'clear <num/name> to remove a task\n");
+        printf("enter 'add' to add a task\n");
+        printf("enter 'clear <num/name>' to remove a task\n");
         printf("'clear all' to clear list\n");
         printf("enter 'save' to save the current list\n");
         printf("enter 'print' to print the current to do list");

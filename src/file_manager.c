@@ -30,7 +30,7 @@ int read_file(char *fileName, Task **head){
     return isTask;
 }
 
-int save_file(Task **head, char* fileName){
+int save_file(char* fileName, Task **head){
     FILE *saveFile = fopen(fileName, "w");
     //check that the file successfully opened
     if (saveFile == NULL){
