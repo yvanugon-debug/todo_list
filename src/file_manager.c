@@ -5,7 +5,7 @@
 
 
 int read_file(char *fileName, Task **head){
-    //open file and check that it has opened correctly
+    
     FILE *taskFile = fopen(fileName, "r");
     
     if (taskFile == NULL){
@@ -28,4 +28,20 @@ int read_file(char *fileName, Task **head){
     }
     fclose(taskFile);
     return isTask;
+}
+
+int save_file(Task **head, char* fileName){
+    FILE *saveFile = fopen(fileName, "w");
+    //check that the file successfully opened
+    if (saveFile == NULL){
+        printf("file failed to open");
+        return -1;
+    }
+    //print the tasks in the linked list into the text file
+    Task *currentTask = *head;
+    while(currentTask != NULL){
+        fprintf(saveFile,"%s,%f,%d\n",currentTask->name,currentTask->hours,currentTask->urgency);
+        currentTask = currentTask->next;
+    }
+    return 0;
 }
